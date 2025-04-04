@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Relatório de Idades</title>
+    <script>
+        var qtd = parseInt(prompt("Quantos números você quer inserir (3 a 9)?"));
+
+        while (qtd < 3 || qtd > 9 || isNaN(qtd)) {
+            alert("Número inválido. O número deve ser entre 3 e 9.");
+            qtd = parseInt(prompt("Quantos números você quer inserir (3 a 9)?"));
+        }
+
+        var numeros = prompt("Digite as idades separadamente:").trim().split(/\s+/).map(num => Number(num));
+
+        while (numeros.length != qtd) {
+            alert("Número de idades inseridas não corresponde ao número solicitado.");
+            numeros = prompt("Digite as idades separadamente:").trim().split(/\s+/).map(num => Number(num));
+        }
+
+        while (numeros.some(n => isNaN(n))) {
+            alert("Valor inválido. Insira apenas números.");
+            numeros = prompt("Digite as idades separadamente:").trim().split(/\s+/).map(num => Number(num));
+        }
+
+        var vet = numeros;
+
+        var idadeInformada = parseInt(prompt("Informe uma idade para verificar se existe:"));
+
+        while (isNaN(idadeInformada)) {
+            alert("Valor inválido. Insira apenas números.");
+            idadeInformada = parseInt(prompt("Informe uma idade para verificar se existe:"));
+        }
+
+        // Soma das idades  
+        var somaIdades = (vet) => {
+            return vet.reduce((total, idade) => total + idade, 0);
+        }
+
+        // A média aritmética simples das idades 
+        var mediaIdades = (vet) => {
+            return somaIdades(vet) / vet.length;
+        }
+
+        // A maior idade 
+        var maiorIdade = (vet) => {
+            return Math.max(...vet);
+        }
+
+        // As idades ímpares 
+        var idadesImpares = (vet) => {
+            return vet.filter(idade => idade % 2 !== 0);
+        }
+
+        // Verificar se todos são maiores de idade (idade >= 18); Retorno: true ou false 
+        var maiorDeIdade = (vet) => {
+            return vet.every(idade => idade >= 18);
+        }
+
+        // Verificar se todas as idades são maiores ou iguais a uma informada
+        var verificarIdade = (vet, idadeInformada) => {
+            return vet.every(idade => idade >= idadeInformada);
+        };
+
+        // Exibir todas as idades maiores ou iguais à informada
+        var exibirIdades = (vet, idadeInformada) => {
+            return vet.filter(idade => idade >= idadeInformada);
+        };
+
+        // Calcular média das idades filtradas (evita dividir por zero)
+        var mediaIdadesMaior = (vet, idadeInformada) => {
+            var filtradas = vet.filter(idade => idade >= idadeInformada);
+            return filtradas.length > 0 ? somaIdades(filtradas) / filtradas.length : null;
+        };
+
+        document.write("<h2>Relatório de Idades</h2>");
+        document.write("<p><strong>Idades informadas:</strong> " + vet.join(", ") + "</p>");
+        document.write("<p><strong>Soma das idades:</strong> " + somaIdades(vet) + "</p>");
+        document.write("<p><strong>Média das idades:</strong> " + mediaIdades(vet).toFixed(2) + "</p>");
+        document.write("<p><strong>Maior idade:</strong> " + maiorIdade(vet) + "</p>");
+        document.write("<p><strong>Idades ímpares:</strong> " + (idadesImpares(vet).length > 0 ? idadesImpares(vet).join(", ") : "Nenhuma") + "</p>");
+        document.write("<p><strong>Todos são maiores de idade (18+)?</strong> " + (maiorDeIdade(vet) ? "Sim" : "Não") + "</p>");
+        document.write("<p><strong>Todos têm idade maior ou igual a " + idadeInformada + "?</strong> " + (verificarIdade(vet, idadeInformada) ? "Sim" : "Não") + "</p>");
+
+        var filtradas = exibirIdades(vet, idadeInformada);
+        document.write("<p><strong>Idades maiores ou iguais a " + idadeInformada + ":</strong> " + (filtradas.length > 0 ? filtradas.join(", ") : "Nenhuma") + "</p>");
+
+        var mediaMaior = mediaIdadesMaior(vet, idadeInformada);
+        document.write("<p><strong>Média das idades maiores ou iguais a " + idadeInformada + ":</strong> " + (mediaMaior !== null ? mediaMaior.toFixed(2) : "Não há idades suficientes") + "</p>");
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
