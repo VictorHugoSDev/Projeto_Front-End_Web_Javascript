@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Relatório de Idades</title>
+    <script>
+        //  Crie uma estrutura JSON para armazenar as informações contidas na tabela abaixo:
+        var pessoas = [
+            {
+                "nome": "Ana",
+                "idade": 18,
+                "sexo": "F",
+                "salario": 1000.00
+            },
+            {
+                "nome": "João",
+                "idade": 20,
+                "sexo": "M",
+                "salario": 3000.00
+            },
+            {
+                "nome": "César",
+                "idade": 33,
+                "sexo": "M",
+                "salario": 1900.00
+            },
+            {
+                "nome": "Maria",
+                "idade": 12,
+                "sexo": "F",
+                "salario": 7000.00
+            },
+            {
+                "nome": "Zé",
+                "idade": 17,
+                "sexo": "M",
+                "salario": 2400.00
+            }
+        ];
+
+        // Exibir o nome e a idade de todas as pessoas maiores de idade
+        var maioresDeIdade = (pessoas) => {
+            return pessoas.filter(pessoa => pessoa.idade >= 18);
+        }
+
+        document.write(`Pessoas maiores de idade: ${maioresDeIdade(pessoas).map(pessoa => `${pessoa.nome} (${pessoa.idade} anos)`).join(", ")}<br><br>`);
+
+
+        // Exibir os nomes de todas as pessoas do sexo masculino
+        var homens = (pessoas) => {
+            return pessoas.filter(pessoa => pessoa.sexo === "M");
+        }
+
+        document.write(`Nomes dos homens: ${homens(pessoas).map(pessoa => pessoa.nome).join(", ")}<br><br>`);
+
+
+        // Exibir os dados da pessoa com o maior salario
+        var maiorSalario = (pessoas) => {
+            return pessoas.filter(pessoa => pessoa.salario == Math.max(...pessoas.map(pessoa => pessoa.salario)));
+        }
+
+        document.write(`Pessoa com maior salário: ${maiorSalario(pessoas)[0].nome} - R$ ${maiorSalario(pessoas)[0].salario.toFixed(2)}<br><br>`);
+
+        // Há alguma mulher que ganha acima de 5000,00?
+        var mulheresSalario = (pessoas) => {
+            return pessoas.some(pessoa => pessoa.sexo == "F" && pessoa.salario > 5000.00);
+        }
+
+        document.write(`Há mulher ganhando acima de R$ 5000,00? ${mulheresSalario(pessoas) ? "Sim" : "Não"}<br><br>`);
+
+        // Media dos salarios dos homens e das mulheres
+        var mediaSalarioH = (pessoas) => {
+             var homens = pessoas.filter(pessoa => pessoa.sexo == "M");
+             return  homens.reduce((totalH, pessoa) => totalH + pessoa.salario, 0) / homens.length;
+        }
+
+        var mediaSalarioM = (pessoas) => {
+            var mulheres = pessoas.filter(pessoa => pessoa.sexo === "F");
+            return mulheres.reduce((total, pessoa) => total + pessoa.salario, 0) / mulheres.length;
+        }
+
+        document.write(`Média salarial dos homens: R$ ${mediaSalarioH(pessoas).toFixed(2)}<br>`);
+        document.write(`Média salarial das mulheres: R$ ${mediaSalarioM(pessoas).toFixed(2)}<br>`);
+
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
