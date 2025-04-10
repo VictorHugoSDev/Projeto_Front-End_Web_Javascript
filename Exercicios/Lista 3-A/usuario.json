@@ -1,4 +1,4 @@
-const usuario = {
-  nome: Victor,
-  idade: 28
-};
+{
+  "nome": "Victor",
+  "idade": 28
+}
