@@ -33,7 +33,7 @@ const atualizarPaginacao = (paginaAtual, totalPaginas, exibirFilmes) => {
     for (let i = paginaInicial; i <= paginaFinal; i++) {
         const botaoPagina = document.createElement('button');
         botaoPagina.textContent = i;
-        if (i === paginaAtual) botaoPagina.classList.add('active-page');
+        if (i === paginaAtual) botaoPagina.classList.add('botao-pagina-ativa');
         botaoPagina.addEventListener('click', () => exibirFilmes(i));
         containerPaginacao.appendChild(botaoPagina);
     }
