@@ -7,7 +7,7 @@
 - [Lista 3-B - AJAX (trabalho)](https://victorhugosdev.github.io/Projeto_Front-End_Web_Javascript/Exercicios/Lista%203-B/index.html)
 
 ### Provas
-- 
+- [Prova 1 - AJAX (Web API)](https://victorhugosdev.github.io/Projeto_Front-End_Web_Javascript/Provas/Prova%201/index.html)
 
 
 ### Projeto Final
